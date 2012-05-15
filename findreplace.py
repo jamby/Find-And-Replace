@@ -27,9 +27,9 @@ def checkFiles(filePath):
 def scanDir(path):
     for currentFile in glob.glob(os.path.join(path, '*')):
         if not currentFile.endswith('.py'): # If it's not a python file
-            if os.path.isdir(currentFile): #if it's a directory, recursion!
+            if os.path.isdir(currentFile): # If it's a directory, recursion!
                 scanDir(currentFile)
-            if not os.path.isdir(currentFile): #if it's a directory, do not print it out
+            if not os.path.isdir(currentFile): # If it's not a directory, check the files!
                 checkFiles(currentFile)
 
 # The dictionary needed for changing things
@@ -37,7 +37,7 @@ replaceDic = {"GameScene":"SceneOfThrones",
               "GameLayer":"LLLLAAAYYYEEERRRR",
               "void":"valid",
               "bool":"TRUEORFALSE",
-              "int":"NUMBERSON" }
+              "int":"NUMBERSON"}
 
 
 pathToSearch = './' # Our current directory and sub-directories that this Python file is in
