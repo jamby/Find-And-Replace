@@ -1,4 +1,4 @@
-import os, fileinput, glob
+import os, fileinput, glob, sys
 
 # The function for replacing multiple items inside a dictionary
 def replace_all(text, dic):
@@ -30,15 +30,29 @@ def scanDir(path):
             if os.path.isdir(currentFile): # If it's a directory, recursion!
                 scanDir(currentFile)
             if not os.path.isdir(currentFile): # If it's not a directory, check the files!
-                checkFiles(currentFile)
+                   if os.access(currentFile, os.W_OK) == True:
+                          checkFiles(currentFile)
 
-# The dictionary needed for changing things
-replaceDic = {"GameScene":"SceneOfThrones",
-              "GameLayer":"LLLLAAAYYYEEERRRR",
-              "void":"valid",
-              "bool":"TRUEORFALSE",
-              "int":"NUMBERSON"}
+numPhrases = int(raw_input("How many phrases are being changed? ")) # Asking the user how many keys and value pairs there are
 
+if(numPhrases == '' or numPhrases == 0):  # If there are 0 phrases wanted or nothing written
+       sys.exit()                         # Exit from the script
 
-pathToSearch = './' # Our current directory and sub-directories that this Python file is in
-scanDir(pathToSearch)
+i = 0
+while(i < numPhrases):
+       word1 = raw_input("What is the phrase you're looking for? ") 
+       word2 = raw_input("What are you replacing it with? ")
+       if(i == 0): # If this is the first word, must make the variable a dictionary
+              replaceDic = {word1:word2}
+       else: # Otherwise, just update the dictionary
+              replaceDic.update({word1:word2})
+       i += 1
+
+pathToSearch = raw_input("File to search in (nothing to search all of the files and directories): ")
+
+if(pathToSearch == ''):
+    scanDir('./') # Our current directory and sub-directories that this Python file is in
+else:
+    scanDir(pathToSearch)
+
+raw_input("\n\nPress Enter to exit...") # Here to make sure the script is finished

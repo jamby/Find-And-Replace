@@ -1,7 +1,7 @@
 This is a Python script which does Find and Replace.
 
-In its current form, it will look in every file and every directory for more files for the words in the dictionary and replace them with the corresponding words.
+In its current form, the script will first ask how many phrases are being looked for.
 
-To change what it looks for, simply replace the replaceDic to different strings. For example replaceDic = {"GameScene":"GameLayer"} - It'll search for "GameScene" and replace it with "GameLayer" in every single file of the folder that the script is in.
+It will loop the number of times you told the phrases are being looked for for the phrase it's looking for and the phrase that will be placed there.
 
-It can be made to just search for 1 file, simply by switching pathToSearch to the file in question and instead of scanDir(pathToSearch), do checkFiles(patchToSearch). This will make it search just 1 file.
+It will then ask which file you want to search through. If no file is entered, it will search through the entire folder and sub-folders for files that have the phrases you are searching for.
