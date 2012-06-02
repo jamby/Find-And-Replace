@@ -6,7 +6,7 @@ def replace_all(text, dic):
              text = text.replace(i, j)
        return text
 
-def checkFiles(filePath):
+def checkFile(filePath):
        # The various files we need
        fileToSearch = filePath
        oldFileName  = fileToSearch + '.old'
@@ -31,7 +31,7 @@ def scanDir(path):
                 scanDir(currentFile)
             if not os.path.isdir(currentFile): # If it's not a directory, check the files!
                    if os.access(currentFile, os.W_OK) == True:
-                          checkFiles(currentFile)
+                          checkFile(currentFile)
 
 numPhrases = int(raw_input("How many phrases are being changed? ")) # Asking the user how many keys and value pairs there are
 
@@ -53,6 +53,6 @@ pathToSearch = raw_input("File to search in (nothing to search all of the files 
 if(pathToSearch == ''):
     scanDir('./') # Our current directory and sub-directories that this Python file is in
 else:
-    scanDir(pathToSearch)
+    checkFile(pathToSearch)
 
 raw_input("\n\nPress Enter to exit...") # Here to make sure the script is finished
